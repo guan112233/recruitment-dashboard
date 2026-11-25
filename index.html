@@ -120,11 +120,15 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin-top:8px}
 .pdp-chip.active{background:#2563eb;border-color:#2563eb;color:#fff;font-weight:600}
 .band{display:inline-block;border-radius:5px;padding:1px 8px;font-size:11px;font-weight:700;color:#fff}
 .band-CE{background:#059669}.band-ME{background:#0d9488}.band-MR{background:#d97706}.band-MM{background:#dc2626}.band-NA{background:#94a3b8}
-.target-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
-.tcard{border:1px solid var(--line);border-radius:10px;padding:13px 15px;background:#fcfdfe}
-.tcard .tn{font-size:12.5px;color:var(--sub);margin-bottom:8px}
-.tcard .tv{font-size:22px;font-weight:700;line-height:1.15}
-.tcard .tv small{font-size:12.5px;font-weight:400;color:var(--sub);margin-left:6px}
+.target-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.tcard{border:1px solid var(--line);border-radius:10px;padding:11px 12px;background:#fcfdfe;display:flex;flex-direction:column}
+.tcard .tn{font-size:12px;color:var(--sub);margin-bottom:7px}
+.tcard .tv{font-size:20px;font-weight:700;line-height:1.15}
+.tcard .tv small{font-size:12px;font-weight:400;color:var(--sub);margin-left:5px}
+.tcard .tr{margin-top:8px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.tcard .rng{font-size:11px;font-weight:600;color:var(--txt)}
+.tcard .td{margin-top:6px;font-size:11px;color:var(--sub);line-height:1.5}
+@media(max-width:760px){.target-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .tbar{height:8px;border-radius:5px;background:#e8edf3;margin:10px 0 7px;position:relative;overflow:hidden}
 .tbar .fill{height:100%;border-radius:5px;transition:width .3s}
 .tbar .mark{position:absolute;top:-3px;width:2px;height:14px;background:#334155}
@@ -138,7 +142,6 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin-top:8px}
 .people-summary{font-size:13px;color:var(--sub);margin-bottom:12px;line-height:1.8}
 .people-summary b{color:var(--txt);font-weight:600}
 .td-card{border:1px solid var(--line);border-radius:10px;padding:12px;background:#fcfdfe}
-.tcard .td{font-size:11.5px;color:var(--sub)}
 .tcard .td b{font-weight:600}
 .ok{color:#059669} .warn{color:#d97706} .miss{color:#dc2626}
 </style>
@@ -148,7 +151,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin-top:8px}
 <header>
   <div>
     <h1>📊 关键指标数据看板</h1>
-    <div class="meta">数据源：底稿数据.xlsx · 生成时间：2026-11-25 14:55 · 每月更新数据后重新生成即可</div>
+    <div class="meta">数据源：底稿数据.xlsx · 生成时间：2026-11-25 15:02 · 每月更新数据后重新生成即可</div>
   </div>
 </header>
 
@@ -635,12 +638,13 @@ function renderPDP(mo) {
       : `<div class="tv" style="color:${c}">${x.actual}</div>`;
     const bandTag = `<span class="band band-${x.band}">${x.band === 'NA' ? '待定' : x.band}</span>`;
     const rangeTxt = x.band === 'NA' ? ''
-      : x.rangeMap ? ` 所在区间 ${x.rangeMap[x.band]} ·`
-      : x.cuts ? ` 所在区间 ${rangeOf(x.cuts, x.band)} ·` : '';
+      : x.rangeMap ? `所在区间 ${x.rangeMap[x.band]}`
+      : x.cuts ? `所在区间 ${rangeOf(x.cuts, x.band)}` : '';
     return `<div class="tcard">
       <div class="tn">${x.name}<small style="margin-left:6px">权重 ${(x.weight * 100).toFixed(0)}%</small></div>
       ${valHtml}
-      <div class="td" style="margin-top:8px">${bandTag}${rangeTxt} ${x.sub}</div>
+      <div class="tr">${bandTag}${rangeTxt ? `<span class="rng">${rangeTxt}</span>` : ''}</div>
+      <div class="td">${x.sub}</div>
     </div>`;
   }).join('');
   const sel = [...pdpSel].sort();
