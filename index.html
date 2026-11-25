@@ -118,9 +118,6 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin-top:8px}
 .pdp-filter-hint{font-size:11px;color:var(--sub);margin-left:4px}
 .pdp-chip{border:1px solid var(--line);background:#f1f5f9;border-radius:999px;padding:3px 14px;font-size:12px;cursor:pointer;color:var(--txt)}
 .pdp-chip.active{background:#2563eb;border-color:#2563eb;color:#fff;font-weight:600}
-.pdp-score{display:flex;align-items:baseline;gap:14px;border:1px solid var(--line);border-radius:10px;background:#f8fafc;padding:10px 16px;margin-bottom:12px}
-.pdp-score .ps-big{font-size:26px;font-weight:800}
-.pdp-score .ps-sub{font-size:12px;color:var(--sub);line-height:1.5}
 .band{display:inline-block;border-radius:5px;padding:1px 8px;font-size:11px;font-weight:700;color:#fff}
 .band-CE{background:#059669}.band-ME{background:#0d9488}.band-MR{background:#d97706}.band-MM{background:#dc2626}.band-NA{background:#94a3b8}
 .target-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
@@ -151,7 +148,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin-top:8px}
 <header>
   <div>
     <h1>📊 关键指标数据看板</h1>
-    <div class="meta">数据源：底稿数据.xlsx · 生成时间：2026-11-25 14:39 · 每月更新数据后重新生成即可</div>
+    <div class="meta">数据源：底稿数据.xlsx · 生成时间：2026-11-25 14:55 · 每月更新数据后重新生成即可</div>
   </div>
 </header>
 
@@ -174,7 +171,6 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin-top:8px}
     </div>
     <span class="targets-title">年度目标完成情况（PDP）</span>
   </div>
-  <div class="pdp-score" id="pdpScore"></div>
   <div class="target-grid" id="targetGrid"></div>
 </div>
 
@@ -216,7 +212,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin-top:8px}
 <li><b>30岁以下人员</b>＝当月新聘且小于30岁（不含转岗、不含离职）；占比分母为新聘总人数</li>
 <li><b>YTD</b>＝当年累计招聘 − 当年累计离职（离职判定：离职时间≤当月月末）。各指标扣减口径：YTD新聘女性＝累计招聘女性业代−累计离职女性业代；YTD本科＝累计招聘本科业代−累计离职本科业代；<b>YTD30岁以下＝累计招聘30岁以下(不含转岗) − 累计离职30岁以下(不含转岗)</b>；<b>YTD30岁以下占比＝YTD30岁以下人数 ÷ YTD招聘总人数(不含转岗、扣减累计离职、不含当月入职当月离职)</b>；YTD业代招聘总数＝累计新聘业代−累计离职新聘业代；<b>YTD招聘总人数＝累计新聘总人数(不含转岗、不含当月入职当月离职) − 累计离职人员(不含转岗)——当月入职且当月离职者视同未计入</b></li>
 <li><b>业代试用期保留率</b>＝（滚动6个月新聘业代 − 滚动6个月转岗人员 − 滚动6个月非转岗业代中离职人员）÷（滚动6个月新聘业代 − 滚动6个月转岗人员），即分母=非转岗业代基数、分子=非转岗业代中仍在职的人数（转岗且后离职者不重复扣减）</li>
-<li><b>PDP 年度目标完成情况</b>＝5 项指标按权重加权，档位分 CE=100 / ME=95 / MR=90 / MM=80：①区域销售收入10%（YTD实际÷目标，≥101.5% CE / 100.5-101.5% ME / 99-100.5% MR / &lt;99% MM，数据待提供）；②业代流失率25%（滚动12个月·整体，&lt;16.9% CE / 16.9-17.3% ME / 17.4-17.7% MR / ≥17.8% MM）；③招聘质量25%（达成率=cap(30岁以下占比/45%)×30%+cap(本科占比/30%)×40%+cap(女性占比/42%)×30%，单项超目标按100%封顶，≥95% CE / 88-95% ME / 80-88% MR / &lt;80% MM）；④新业代保留率20%（分月滚动6个月、年度按分月平均，≥90% CE / ≥80% ME / ≥75% MR / &lt;75% MM）；⑤空岗20%（按周累计，判档口径待确认，数据待提供）。左上角「柱/利/杰」筛选可单选/多选，仅影响 PDP 区块；流失率为整体口径不受筛选影响</li>
+<li><b>PDP 年度目标完成情况</b>＝5 项指标分别判定所在档位（CE/ME/MR/MM），展示档位与对应区间，不计分：①区域销售收入10%（YTD实际÷目标，≥101.5% CE / 100.5-101.5% ME / 99-100.5% MR / &lt;99% MM，数据待提供）；②业代流失率25%（滚动12个月·整体，&lt;16.9% CE / 16.9-17.3% ME / 17.4-17.7% MR / ≥17.8% MM）；③招聘质量25%（达成率=cap(30岁以下占比/45%)×30%+cap(本科占比/30%)×40%+cap(女性占比/42%)×30%，单项超目标按100%封顶，≥95% CE / 88-95% ME / 80-88% MR / &lt;80% MM）；④新业代保留率20%（分月滚动6个月、年度按分月平均，≥90% CE / ≥80% ME / ≥75% MR / &lt;75% MM）；⑤空岗20%（按周累计，判档口径待确认，数据待提供）。左上角「柱/利/杰」筛选可单选/多选，仅影响 PDP 区块；流失率为整体口径不受筛选影响</li>
 </ul>
 </details>
 
@@ -518,17 +514,25 @@ function renderTable(mo) {
 
 // ============ PDP 年度目标完成情况 ============
 // 口径（底稿 Sheet2 / 2026-11-25 与管管确认）：
-//  档位分 CE=100 / ME=95 / MR=90 / MM=80，按权重加权；
+//  不展示分数与加权总分，各指标仅显示所在档位（CE/ME/MR/MM）及对应区间；
 //  ①区域销售收入10%：YTD实际÷目标（分对应区域，数据 pdp_inputs.json）；≥101.5 CE / ≥100.5 ME / ≥99 MR / <99 MM
 //  ②业代流失率25%：滚动12个月·整体（不随筛选变化）；<16.9 CE / 16.9-17.3 ME / 17.4-17.7 MR / ≥17.8 MM
 //  ③招聘质量25%：达成率=cap(X/45)×30%+cap(Y/30)×40%+cap(Z/42)×30%，单项超目标按100%封顶；≥95 CE / ≥88 ME / ≥80 MR / <80 MM
 //  ④新业代保留率20%：分月滚动6个月（业代口径），年度=各月平均；≥90 CE / ≥80 ME / ≥75 MR / <75 MM
 //  ⑤空岗20%：按周累计（口径待定，数据 pdp_inputs.json）
-const BAND_SCORE = { CE: 100, ME: 95, MR: 90, MM: 80 };
 const capPct = (num, den, target) => (den ? Math.min(num / den * 100, target) : null);
 function bandOf(r, cuts) {
   for (const c of cuts) if (r >= c.min) return c.band;
   return cuts[cuts.length - 1].band;
+}
+// 由分档切点反推某档位的数值区间（cuts 按阈值降序排列）
+function rangeOf(cuts, band) {
+  const i = cuts.findIndex(c => c.band === band);
+  if (i < 0) return '';
+  const lo = cuts[i].min, hi = i > 0 ? cuts[i - 1].min : null;
+  if (hi == null) return '≥' + lo;
+  if (lo <= -1e8) return '<' + hi;
+  return lo + '~' + (hi - 0.1);
 }
 const bandColor = { CE: '#059669', ME: '#0d9488', MR: '#d97706', MM: '#dc2626', NA: '#94a3b8' };
 
@@ -564,6 +568,7 @@ function pdpIndicators(mo) {
     list.push({ name: '区域销售收入', weight: 0.10,
       actual: rate == null ? '–' : rate.toFixed(1) + '%',
       band: rate == null ? 'NA' : bandOf(rate, [{ min: 101.5, band: 'CE' }, { min: 100.5, band: 'ME' }, { min: 99, band: 'MR' }, { min: -1e9, band: 'MM' }]),
+      cuts: [{ min: 101.5, band: 'CE' }, { min: 100.5, band: 'ME' }, { min: 99, band: 'MR' }, { min: -1e9, band: 'MM' }],
       sub: 'YTD实际÷目标' + (selRgs.length === REGIONS.length ? '' : `（${selRgs.length}个大区）`) });
   } else {
     list.push({ name: '区域销售收入', weight: 0.10, pending: '数据待提供', band: 'NA', sub: '按11大区提供实际与目标后自动计算' });
@@ -576,6 +581,7 @@ function pdpIndicators(mo) {
     const curM = attrMonths[attrMonths.length - 1], cur = +attr[curM];
     list.push({ name: '业代流失率', weight: 0.25, actual: cur.toFixed(1) + '%',
       band: cur < 16.9 ? 'CE' : cur <= 17.3 ? 'ME' : cur <= 17.7 ? 'MR' : 'MM',
+      cuts: [{ min: 17.8, band: 'MM' }, { min: 17.4, band: 'MR' }, { min: 16.9, band: 'ME' }, { min: -1e9, band: 'CE' }],
       sub: `${curM} · 滚动12个月 · 整体（不随范围筛选变化）` });
   } else {
     list.push({ name: '业代流失率', weight: 0.25, pending: '数据待提供', band: 'NA', sub: '滚动12个月 · 整体（晴雨表）' });
@@ -586,6 +592,7 @@ function pdpIndicators(mo) {
   const zq = (X != null && Y != null && Z != null) ? X / 45 * 30 + Y / 30 * 40 + Z / 42 * 30 : null;
   list.push({ name: '招聘质量', weight: 0.25, actual: zq == null ? '–' : zq.toFixed(1) + '%',
     band: zq == null ? 'NA' : bandOf(zq, [{ min: 95, band: 'CE' }, { min: 88, band: 'ME' }, { min: 80, band: 'MR' }, { min: -1e9, band: 'MM' }]),
+    cuts: [{ min: 95, band: 'CE' }, { min: 88, band: 'ME' }, { min: 80, band: 'MR' }, { min: -1e9, band: 'MM' }],
     sub: `30岁以下 ${t['ytd总'] ? (t['ytd30'] / t['ytd总'] * 100).toFixed(1) : '–'}% · 本科 ${t['ytd业'] ? (t['ytd本科'] / t['ytd业'] * 100).toFixed(1) : '–'}% · 女性 ${t['ytd业'] ? (t['ytd女'] / t['ytd业'] * 100).toFixed(1) : '–'}%（超目标单项按100%计）` });
 
   // ④ 新业代保留率（20%）—— 分月滚动6个月，年度按分月平均
@@ -595,6 +602,7 @@ function pdpIndicators(mo) {
     const curS = pdpAgg(mo);
     list.push({ name: '新业代保留率', weight: 0.20, actual: avg.toFixed(1) + '%',
       band: bandOf(avg, [{ min: 90, band: 'CE' }, { min: 80, band: 'ME' }, { min: 75, band: 'MR' }, { min: -1e9, band: 'MM' }]),
+      cuts: [{ min: 90, band: 'CE' }, { min: 80, band: 'ME' }, { min: 75, band: 'MR' }, { min: -1e9, band: 'MM' }],
       sub: `1-${mo.slice(5)}月各月滚动6个月平均 · 当月 ${curS['6m招聘'] ? (curS['6m在职'] / curS['6m招聘'] * 100).toFixed(1) : '–'}%` });
   } else {
     list.push({ name: '新业代保留率', weight: 0.20, pending: '基数不足', band: 'NA', sub: '分月滚动6个月 · 年度按分月平均' });
@@ -609,6 +617,7 @@ function pdpIndicators(mo) {
     const cur = nums.length ? nums.reduce((a, b) => a + b, 0) : null;
     list.push({ name: '空岗', weight: 0.20, actual: cur == null ? '–' : cur.toFixed(0),
       band: cur == null ? 'NA' : bandOf(-cur, [{ min: -4, band: 'CE' }, { min: -8, band: 'ME' }, { min: -10, band: 'MR' }, { min: -1e9, band: 'MM' }]),
+      rangeMap: { CE: '≤4', ME: '4.1~8', MR: '8.1~10', MM: '>10' },
       sub: '所选范围累计（口径待定，暂按累计数判档）' });
   } else {
     list.push({ name: '空岗', weight: 0.20, pending: '数据待提供', band: 'NA', sub: '按周累计（判档口径待确认）' });
@@ -625,23 +634,15 @@ function renderPDP(mo) {
       ? `<div class="tv" style="color:#94a3b8">–<small>${x.pending}</small></div>`
       : `<div class="tv" style="color:${c}">${x.actual}</div>`;
     const bandTag = `<span class="band band-${x.band}">${x.band === 'NA' ? '待定' : x.band}</span>`;
-    const scoreTxt = x.pending || x.band === 'NA' ? '' : ` 档位分 ${BAND_SCORE[x.band]} 分 ·`;
+    const rangeTxt = x.band === 'NA' ? ''
+      : x.rangeMap ? ` 所在区间 ${x.rangeMap[x.band]} ·`
+      : x.cuts ? ` 所在区间 ${rangeOf(x.cuts, x.band)} ·` : '';
     return `<div class="tcard">
       <div class="tn">${x.name}<small style="margin-left:6px">权重 ${(x.weight * 100).toFixed(0)}%</small></div>
       ${valHtml}
-      <div class="td" style="margin-top:8px">${bandTag}${scoreTxt} ${x.sub}</div>
+      <div class="td" style="margin-top:8px">${bandTag}${rangeTxt} ${x.sub}</div>
     </div>`;
   }).join('');
-  const scored = items.filter(x => !x.pending && x.band !== 'NA');
-  const total = scored.reduce((s, x) => s + x.weight * BAND_SCORE[x.band], 0);
-  const wsum = scored.reduce((s, x) => s + x.weight, 0);
-  const note = wsum >= 0.999
-    ? 'CE=100 · ME=95 · MR=90 · MM=80，按权重加权，满分100'
-    : `已计入 ${scored.length}/5 项（权重合计 ${(wsum * 100).toFixed(0)}%），缺失项不计入`;
-  const totalC = total >= 95 ? '#059669' : total >= 90 ? '#0d9488' : total >= 80 ? '#d97706' : '#dc2626';
-  document.getElementById('pdpScore').innerHTML =
-    `<span class="ps-big" style="color:${totalC}">${scored.length ? total.toFixed(1) : '–'}</span>
-     <span class="ps-sub">加权总分${scored.length ? '' : ''} · ${note}</span>`;
   const sel = [...pdpSel].sort();
   const regionsN = pdpRegions().length;
   document.getElementById('pdpFilterHint').textContent =
