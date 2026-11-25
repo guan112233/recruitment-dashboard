@@ -143,6 +143,15 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin-top:8px}
 .people-summary b{color:var(--txt);font-weight:600}
 .td-card{border:1px solid var(--line);border-radius:10px;padding:12px;background:#fcfdfe}
 .tcard .td b{font-weight:600}
+.tcard .calc-btn{margin-top:auto;align-self:flex-start;padding:4px 10px;border:1px solid var(--line);border-radius:6px;background:#fff;font-size:11px;color:var(--blue);cursor:pointer}
+.tcard .calc-btn:hover{background:#eff6ff;border-color:var(--blue)}
+.calc-formula{background:#f6f8fb;border:1px solid var(--line);border-radius:8px;padding:12px 14px;font-size:12.5px;line-height:1.9;color:var(--txt);white-space:normal;margin-bottom:12px}
+.calc-formula b{color:var(--blue)}
+.calc-formula code{background:#eef2f7;border-radius:4px;padding:1px 5px;font-size:12px}
+.people-toggle{display:flex;align-items:center;gap:6px;font-size:12.5px;color:var(--sub);margin-bottom:10px;cursor:pointer}
+.people-toggle input{cursor:pointer}
+tr.excluded td{background:#fff7ed;color:#9a3412}
+tr.excluded:hover td{background:#ffedd5}
 .ok{color:#059669} .warn{color:#d97706} .miss{color:#dc2626}
 </style>
 </head>
@@ -151,7 +160,7 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin-top:8px}
 <header>
   <div>
     <h1>📊 关键指标数据看板</h1>
-    <div class="meta">数据源：底稿数据.xlsx · 生成时间：2026-11-25 15:10 · 每月更新数据后重新生成即可</div>
+    <div class="meta">数据源：底稿数据.xlsx · 生成时间：2026-11-25 15:46 · 每月更新数据后重新生成即可</div>
   </div>
 </header>
 
@@ -215,7 +224,8 @@ footer{text-align:center;color:var(--sub);font-size:12px;margin-top:8px}
 <li><b>30岁以下人员</b>＝当月新聘且小于30岁（不含转岗、不含离职）；占比分母为新聘总人数</li>
 <li><b>YTD</b>＝当年累计招聘 − 当年累计离职（离职判定：离职时间≤当月月末）。各指标扣减口径：YTD新聘女性＝累计招聘女性业代−累计离职女性业代；YTD本科＝累计招聘本科业代−累计离职本科业代；<b>YTD30岁以下＝累计招聘30岁以下(不含转岗) − 累计离职30岁以下(不含转岗)</b>；<b>YTD30岁以下占比＝YTD30岁以下人数 ÷ YTD招聘总人数(不含转岗、扣减累计离职、不含当月入职当月离职)</b>；YTD业代招聘总数＝累计新聘业代−累计离职新聘业代；<b>YTD招聘总人数＝累计新聘总人数(不含转岗、不含当月入职当月离职) − 累计离职人员(不含转岗)——当月入职且当月离职者视同未计入</b></li>
 <li><b>业代试用期保留率</b>＝（滚动6个月新聘业代 − 滚动6个月转岗人员 − 滚动6个月非转岗业代中离职人员）÷（滚动6个月新聘业代 − 滚动6个月转岗人员），即分母=非转岗业代基数、分子=非转岗业代中仍在职的人数（转岗且后离职者不重复扣减）</li>
-<li><b>PDP 年度目标完成情况</b>＝5 项指标分别判定所在档位（CE/ME/MR/MM），展示档位与对应区间，不计分：①区域销售收入10%（YTD实际÷目标，≥101.5% CE / 100.5-101.5% ME / 99-100.5% MR / &lt;99% MM，数据待提供）；②业代流失率25%（滚动12个月·整体，按所选月份取数；&lt;16.9% CE / 16.9-17.3% ME / 17.4-17.7% MR / ≥17.8% MM）；③招聘质量25%（达成率=cap(30岁以下占比/45%)×30%+cap(本科占比/30%)×40%+cap(女性占比/42%)×30%，单项超目标按100%封顶，≥95% CE / 88-95% ME / 80-88% MR / &lt;80% MM）；④新业代保留率20%（分月滚动6个月、年度按分月平均，≥90% CE / ≥80% ME / ≥75% MR / &lt;75% MM）；⑤空岗20%（按周累计，判档口径待确认，数据待提供）。左上角「柱/利/杰」筛选可单选/多选，仅影响 PDP 区块；流失率为整体口径不受筛选影响</li>
+<li><b>PDP 年度目标完成情况</b>＝5 项指标分别判定所在档位（CE/ME/MR/MM），展示档位与对应区间，不计分：①区域销售收入10%（YTD实际÷目标，≥101.5% CE / 100.5-101.5% ME / 99-100.5% MR / &lt;99% MM，数据待提供）；②业代流失率25%（滚动12个月·整体，按所选月份取数；&lt;16.9% CE / 16.9-17.3% ME / 17.4-17.7% MR / ≥17.8% MM）；③招聘质量25%（达成率=cap(30岁以下占比/45%)×30%+cap(本科占比/30%)×40%+cap(女性占比/42%)×30%，单项超目标按100%封顶，≥95% CE / 88-95% ME / 80-88% MR / &lt;80% MM）；④新业代保留率20%（分月滚动6个月、年度按分月平均，≥90% CE / ≥80% ME / ≥75% MR / &lt;75% MM）；⑤空岗20%（按周累计，判档口径待确认，数据待提供）。左上角「柱/利/杰」筛选可单选/多选，仅影响 PDP 区块；流失率为整体口径不受筛选影响。<b>每张卡片点「查看计算过程」</b>可看公式、代入数字与逐项过程数据</li>
+<li><b>数据可追溯</b>＝点击明细表中任意数字可打开人员明细，默认列出<b>全部候选记录（含已离职、转岗等未计入人员，橙色底纹）</b>，并在「计入分母 / 计入分子 / 说明」列标注是否计入与原因，顶部列出该指标计算公式与代入数值；可取消勾选「显示未计入人员」只看计入者，也可导出本表。PDP 卡片的「查看计算过程 → 查看人员明细」同样可下钻</li>
 </ul>
 </details>
 
@@ -371,9 +381,31 @@ YTD招聘总人数 =   -- 等价于：累计新聘总人数(不含转岗、不�
       </div>
     </div>
     <div class="modal-body">
+      <label class="people-toggle"><input type="checkbox" id="peopleShowAll" checked /> 显示未计入人员（含已离职、转岗），并在表中标注计入情况</label>
+      <div class="calc-formula" id="peopleFormula"></div>
       <div class="people-summary" id="peopleSummary"></div>
       <div class="table-card">
         <table id="peopleTable"></table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="calcModal" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h3 id="calcModalTitle">计算过程</h3>
+      <div class="hdr-actions">
+        <button type="button" id="btnCalcPeople" class="exp-btn">查看人员明细</button>
+        <button type="button" id="btnExportCalc" class="exp-btn exp-btn-blue">导出本表</button>
+        <span class="modal-close" id="calcModalClose">&times;</span>
+      </div>
+    </div>
+    <div class="modal-body">
+      <div class="calc-formula" id="calcFormula"></div>
+      <div class="people-summary" id="calcSummary"></div>
+      <div class="table-card" style="margin-top:12px">
+        <table id="calcTable"></table>
       </div>
     </div>
   </div>
@@ -602,7 +634,7 @@ function pdpIndicators(mo) {
     sub: `30岁以下 ${t['ytd总'] ? (t['ytd30'] / t['ytd总'] * 100).toFixed(1) : '–'}% · 本科 ${t['ytd业'] ? (t['ytd本科'] / t['ytd业'] * 100).toFixed(1) : '–'}% · 女性 ${t['ytd业'] ? (t['ytd女'] / t['ytd业'] * 100).toFixed(1) : '–'}%（超目标单项按100%计）` });
 
   // ④ 新业代保留率（20%）—— 分月滚动6个月，年度按分月平均
-  const mRates = MONTHS.map(m => { const s = pdpAgg(m); return s['6m招聘'] ? s['6m在职'] / s['6m招聘'] * 100 : null; }).filter(v => v != null);
+  const mRates = MONTHS.filter(m => m <= mo).map(m => { const s = pdpAgg(m); return s['6m招聘'] ? s['6m在职'] / s['6m招聘'] * 100 : null; }).filter(v => v != null);
   if (mRates.length) {
     const avg = mRates.reduce((a, b) => a + b, 0) / mRates.length;
     const curS = pdpAgg(mo);
@@ -629,6 +661,8 @@ function pdpIndicators(mo) {
     list.push({ name: '空岗', weight: 0.20, pending: '数据待提供', band: 'NA', sub: '按周累计（判档口径待确认）' });
   }
 
+  const KEY_OF = { '区域销售收入': 'sales', '业代流失率': 'attrition', '招聘质量': 'quality', '新业代保留率': 'retention', '空岗': 'vacancy' };
+  list.forEach(x => { x.key = KEY_OF[x.name]; });
   return list;
 }
 
@@ -648,6 +682,7 @@ function renderPDP(mo) {
       ${valHtml}
       <div class="tr">${bandTag}${rangeTxt ? `<span class="rng">${rangeTxt}</span>` : ''}</div>
       <div class="td">${x.sub}</div>
+      <button type="button" class="calc-btn" data-k="${x.key}">查看计算过程</button>
     </div>`;
   }).join('');
   const sel = [...pdpSel].sort();
@@ -655,6 +690,144 @@ function renderPDP(mo) {
   document.getElementById('pdpFilterHint').textContent =
     `当前：${sel.length === 3 ? '整体' : sel.join('+')}（${regionsN}个大区）`;
 }
+
+// ============ PDP 计算过程弹窗 ============
+// 每张卡片可点开：公式 + 代入数字 + 逐项过程数据，支持导出，并可跳转人员明细
+let curCalcMeta = {};
+const pct1 = (n, d) => (d ? (n / d * 100).toFixed(1) + '%' : '–');
+
+function pdpCalcDetail(key, mo) {
+  const pdp = D.pdp || {};
+  const rgs = pdpRegions();
+  const t = pdpAgg(mo);
+  const selArr = [...pdpSel].sort();
+  const range = `${selArr.length === 3 || !selArr.length ? '整体' : selArr.join('+')}（${rgs.length}个大区）`;
+  const out = { title: '', formula: '', summary: '', head: [], rows: [], people: null };
+
+  if (key === 'quality') {
+    const items = [
+      { n: '30岁以下占比', num: t['ytd30'], den: t['ytd总'], tgt: 45, w: 30 },
+      { n: '本科业代占比', num: t['ytd本科'], den: t['ytd业'], tgt: 30, w: 40 },
+      { n: '女性业代占比', num: t['ytd女'], den: t['ytd业'], tgt: 42, w: 30 },
+    ];
+    out.head = ['分项', '分子', '分母', '实际占比', '目标', '封顶后占比', '权重', '加权得分'];
+    let sum = 0;
+    items.forEach(it => {
+      const raw = it.den ? it.num / it.den * 100 : null;
+      const capped = raw == null ? null : Math.min(raw, it.tgt);
+      const score = capped == null ? null : capped / it.tgt * it.w;
+      if (score != null) sum += score;
+      out.rows.push([it.n, it.num, it.den, raw == null ? '–' : raw.toFixed(1) + '%', it.tgt + '%',
+        capped == null ? '–' : capped.toFixed(1) + '%', it.w + '%', score == null ? '–' : score.toFixed(2)]);
+    });
+    out.rows.push(['合计（达成率）', '', '', '', '', '', '100%', sum.toFixed(1) + '%']);
+    out.title = '招聘质量 · 计算过程';
+    out.formula = `<b>公式</b>：达成率 ＝ min(30岁以下占比 ÷ 45%, 100%)×30 ＋ min(本科占比 ÷ 30%, 100%)×40 ＋ min(女性占比 ÷ 42%, 100%)×30，单项超目标按 100% 封顶<br>
+      <b>代入</b>：min(${pct1(t['ytd30'], t['ytd总'])} ÷ 45%, 100%)×30 ＋ min(${pct1(t['ytd本科'], t['ytd业'])} ÷ 30%, 100%)×40 ＋ min(${pct1(t['ytd女'], t['ytd业'])} ÷ 42%, 100%)×30 ＝ <b>${sum.toFixed(1)}%</b><br>
+      <b>判档</b>：≥95% CE ／ 88~94.9 ME ／ 80~87.9 MR ／ &lt;80 MM。<b>口径</b>：分子分母均为 YTD 累计（不含转岗、扣减累计离职、不含当月入职当月离职）。`;
+    out.summary = `月份：<b>${mo}</b> ｜ 范围：<b>${range}</b> ｜ 结果：<b>${sum.toFixed(1)}%</b> ｜ 下方「查看人员明细」可看逐条底稿与计入情况`;
+    out.people = 'attr';
+  } else if (key === 'retention') {
+    out.head = ['月份', '分子 · 6个月在职非转岗业代', '分母 · 6个月非转岗业代', '当月保留率'];
+    let sum = 0, cnt = 0;
+    const parts = [];
+    MONTHS.filter(m => m <= mo).forEach(m => {
+      const s = pdpAgg(m);
+      const rate = s['6m招聘'] ? s['6m在职'] / s['6m招聘'] * 100 : null;
+      if (rate != null) { sum += rate; cnt++; parts.push(rate.toFixed(1) + '%'); }
+      out.rows.push([m, s['6m在职'], s['6m招聘'], rate == null ? '–' : rate.toFixed(1) + '%']);
+    });
+    const avg = cnt ? sum / cnt : null;
+    out.rows.push(['年度平均（1-' + mo.slice(5) + '月）', '', '', avg == null ? '–' : avg.toFixed(1) + '%']);
+    const curS = pdpAgg(mo);
+    out.title = '新业代保留率 · 计算过程';
+    out.formula = `<b>当月公式</b>：保留率 ＝ 滚动6个月「非转岗且仍在职」新聘业代 ÷ 滚动6个月「非转岗」新聘业代 ＝ ${curS['6m在职']} ÷ ${curS['6m招聘']} ＝ <b>${pct1(curS['6m在职'], curS['6m招聘'])}</b><br>
+      <b>年度公式</b>：1-${mo.slice(5)}月各月保留率算术平均 ＝ (${parts.join(' ＋ ')}) ÷ ${cnt} ＝ <b>${avg == null ? '–' : avg.toFixed(1) + '%'}</b><br>
+      <b>判档</b>：≥90% CE ／ 80~89.9 ME ／ 75~79.9 MR ／ &lt;75 MM。<b>口径</b>：转岗人员不计入分母与分子；已离职者计入分母、不计入分子；窗口＝当月月末往前 183 天。`;
+    out.summary = `月份：<b>${mo}</b> ｜ 范围：<b>${range}</b> ｜ 年度平均：<b>${avg == null ? '–' : avg.toFixed(1) + '%'}</b> ｜ 下方「查看人员明细」含离职与转岗人员`;
+    out.people = 'retention';
+  } else if (key === 'attrition') {
+    const attr = pdp.attrition || {};
+    const cuts = [{ min: 17.8, band: 'MM' }, { min: 17.4, band: 'MR' }, { min: 16.9, band: 'ME' }, { min: -1e9, band: 'CE' }];
+    out.head = ['月份', '滚动12个月业代流失率', '所在档位', '数据来源'];
+    Object.keys(attr).filter(k => !k.startsWith('_')).sort().forEach(m => {
+      const v = +attr[m];
+      out.rows.push([m, v.toFixed(1) + '%', bandOf(v, cuts), '晴雨表「滚动12个月 · 公司平均」／底稿 Sheet2']);
+    });
+    if (!out.rows.length) out.rows.push(['—', '数据待提供', '待定', '晴雨表按月份提供']);
+    out.title = '业代流失率 · 数据来源与判档';
+    out.formula = `<b>口径</b>：滚动12个月业代流失率（公司整体），按所选月份取对应值，<b>不随柱/利/杰范围筛选变化</b>。<br>
+      <b>判档</b>：&lt;16.9% CE ／ 16.9-17.3 ME ／ 17.4-17.7 MR ／ ≥17.8 MM。<br>
+      <b>数据来源</b>：该值由「晴雨表」或底稿 Sheet2 提供，<b>看板不自行计算</b>；当前 ${mo} ＝ ${attr[mo] != null ? (+attr[mo]).toFixed(1) + '%' : '待提供'}。其余月份补齐后自动显示。`;
+    out.summary = `月份：<b>${mo}</b> ｜ 现有数据月份：<b>${Object.keys(attr).filter(k => !k.startsWith('_')).sort().join('、') || '无'}</b>`;
+  } else if (key === 'sales') {
+    const sales = pdp.sales || {};
+    out.head = ['大区', '年度目标', 'YTD实际', '达成率', '状态'];
+    rgs.forEach(r => {
+      const s = sales[r];
+      if (!s) { out.rows.push([r, '待提供', '待提供', '–', '未录入']); return; }
+      const tgt = +s.target || 0;
+      let act = 0;
+      for (const m in (s.actual || {})) if (MONTHS.includes(m) && m <= mo) act += (+s.actual[m] || 0);
+      out.rows.push([r, tgt || '待提供', act || '待提供', tgt ? (act / tgt * 100).toFixed(1) + '%' : '–', tgt ? '已录入' : '未录入']);
+    });
+    out.title = '区域销售收入 · 计算过程';
+    out.formula = `<b>公式</b>：达成率 ＝ 所选范围 YTD 实际合计 ÷ 年度目标合计 × 100%（按月累加实际值，仅统计 ≤ ${mo} 的月份）<br>
+      <b>判档</b>：≥101.5% CE ／ 100.5~101.4 ME ／ 99~100.4 MR ／ &lt;99 MM。<br>
+      <b>数据来源</b>：pdp_inputs.json 的 sales，按 11 大区提供目标与各月实际；当前<b>未录入</b>，故卡片显示「数据待提供」。`;
+    out.summary = `月份：<b>${mo}</b> ｜ 范围：<b>${range}</b> ｜ 数据状态：<b>待提供</b>`;
+  } else if (key === 'vacancy') {
+    const vac = pdp.vacancy || {};
+    out.head = ['大区', '空岗数', '状态'];
+    rgs.forEach(r => out.rows.push([r, vac[r] != null ? vac[r] : '待提供', vac[r] != null ? '已录入' : '未录入']));
+    out.title = '空岗 · 计算过程';
+    out.formula = `<b>口径</b>：按周累计空岗数，所选范围合计后判档（判档口径待确认，暂按累计数）。<br>
+      <b>暂定判档</b>：≤4 CE ／ 4.1~8 ME ／ 8.1~10 MR ／ &gt;10 MM。<br>
+      <b>数据来源</b>：pdp_inputs.json 的 vacancy；当前<b>未录入</b>，故卡片显示「数据待提供」。`;
+    out.summary = `月份：<b>${mo}</b> ｜ 范围：<b>${range}</b> ｜ 数据状态：<b>待提供</b> ｜ 判档口径待确认`;
+  }
+  return out;
+}
+
+function openCalcModal(key, mo) {
+  const d = pdpCalcDetail(key, mo);
+  curCalcMeta = { key, mo, ...d };
+  document.getElementById('calcModalTitle').textContent = d.title;
+  document.getElementById('calcFormula').innerHTML = d.formula;
+  document.getElementById('calcSummary').innerHTML = d.summary;
+  const head = '<tr>' + d.head.map(h => `<th>${h}</th>`).join('') + '</tr>';
+  const body = d.rows.map(r => {
+    const isSum = String(r[0]).startsWith('合计') || String(r[0]).startsWith('年度');
+    return `<tr${isSum ? ' class="total"' : ''}>` + r.map(c => `<td>${c}</td>`).join('') + '</tr>';
+  }).join('');
+  document.getElementById('calcTable').innerHTML = head + (body || `<tr><td colspan="${d.head.length}">暂无数据</td></tr>`);
+  document.getElementById('btnCalcPeople').style.display = d.people ? '' : 'none';
+  document.getElementById('calcModal').classList.add('open');
+}
+
+document.getElementById('targetGrid').addEventListener('click', e => {
+  const b = e.target.closest('.calc-btn');
+  if (b) openCalcModal(b.dataset.k, sel.value);
+});
+document.getElementById('calcModalClose').addEventListener('click', () => document.getElementById('calcModal').classList.remove('open'));
+document.getElementById('calcModal').addEventListener('click', e => {
+  if (e.target.id === 'calcModal') document.getElementById('calcModal').classList.remove('open');
+});
+document.getElementById('btnExportCalc').addEventListener('click', () => {
+  const { head, rows, key, mo } = curCalcMeta;
+  downloadCSV(`${key}_${mo}_计算过程.csv`, [head, ...rows]);
+});
+document.getElementById('btnCalcPeople').addEventListener('click', () => {
+  const { key, mo, people } = curCalcMeta;
+  document.getElementById('calcModal').classList.remove('open');
+  if (key === 'retention' || people === 'retention') {
+    openPeopleModal('业代试用期保留率', '合计', mo, pdpRegions());
+  } else if (people === 'attr') {
+    attrState.dim = 'u30'; attrState.colName = 'YTD30岁以下占比';
+    attrState.months = MONTHS.filter(m => m <= mo);
+    buildAttrMonthPicker(); openAttrModal('合计');
+  }
+});
 
 document.querySelectorAll('#pdpFilter .pdp-chip').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -1021,24 +1194,50 @@ function inSixWin(rec, mo) {
   return d >= start && d <= end;
 }
 
-// 各指标对应的人员筛选条件
-const PEOPLE_FN = {
-  '女性业代人数':   (rec, mo) => hiredIn(rec,mo) && rec.sales && rec.gender === '女' && inService(rec,mo),
-  '女性业代占比':   (rec, mo) => hiredIn(rec,mo) && rec.sales && rec.gender === '女' && inService(rec,mo),
-  '本科业代人数':   (rec, mo) => hiredIn(rec,mo) && rec.sales && rec.edu === '本科' && inService(rec,mo),
-  '本科业代占比':   (rec, mo) => hiredIn(rec,mo) && rec.sales && rec.edu === '本科' && inService(rec,mo),
-  '30岁以下人员':   (rec, mo) => hiredIn(rec,mo) && !rec.tr && rec.u30 === 1 && inService(rec,mo),
-  '30岁以下占比':   (rec, mo) => hiredIn(rec,mo) && !rec.tr && rec.u30 === 1 && inService(rec,mo),
-  '新聘业代人数':   (rec, mo) => hiredIn(rec,mo) && rec.sales && inService(rec,mo),
-  '新聘总人数':     (rec, mo) => hiredIn(rec,mo) && !rec.tr && inService(rec,mo),
-  'YTD新聘女性人数': (rec, mo) => ytdHired(rec,mo) && rec.sales && rec.gender === '女' && inService(rec,mo),
-  'YTD本科业代人数': (rec, mo) => ytdHired(rec,mo) && rec.sales && rec.edu === '本科' && inService(rec,mo),
-  'YTD业代招聘总数': (rec, mo) => ytdHired(rec,mo) && rec.sales && inService(rec,mo),
-  'YTD在职业代人数': (rec, mo) => ytdHired(rec,mo) && rec.sales && inService(rec,mo),
-  'YTD招聘总人数':  (rec, mo) => ytdHired(rec,mo) && !rec.tr && inService(rec,mo),
-  'YTD30岁以下人数': (rec, mo) => ytdHired(rec,mo) && !rec.tr && rec.u30 === 1 && inService(rec,mo),
-  '业代试用期保留率': (rec, mo) => rec.sales && !rec.tr && inService(rec,mo) && inSixWin(rec,mo),
+// 候选记录（不含在职判定）：用于「显示未计入人员」，让离职/转岗人员也能看到
+const PEOPLE_BASE = {
+  '女性业代人数':   (rec, mo) => hiredIn(rec,mo) && rec.sales && rec.gender === '女',
+  '女性业代占比':   (rec, mo) => hiredIn(rec,mo) && rec.sales && rec.gender === '女',
+  '本科业代人数':   (rec, mo) => hiredIn(rec,mo) && rec.sales && rec.edu === '本科',
+  '本科业代占比':   (rec, mo) => hiredIn(rec,mo) && rec.sales && rec.edu === '本科',
+  '30岁以下人员':   (rec, mo) => hiredIn(rec,mo) && !rec.tr && rec.u30 === 1,
+  '30岁以下占比':   (rec, mo) => hiredIn(rec,mo) && !rec.tr && rec.u30 === 1,
+  '新聘业代人数':   (rec, mo) => hiredIn(rec,mo) && rec.sales,
+  '新聘总人数':     (rec, mo) => hiredIn(rec,mo) && !rec.tr,
+  'YTD新聘女性人数': (rec, mo) => ytdHired(rec,mo) && rec.sales && rec.gender === '女',
+  'YTD本科业代人数': (rec, mo) => ytdHired(rec,mo) && rec.sales && rec.edu === '本科',
+  'YTD业代招聘总数': (rec, mo) => ytdHired(rec,mo) && rec.sales,
+  'YTD在职业代人数': (rec, mo) => ytdHired(rec,mo) && rec.sales,
+  'YTD招聘总人数':  (rec, mo) => ytdHired(rec,mo) && !rec.tr,
+  'YTD30岁以下人数': (rec, mo) => ytdHired(rec,mo) && !rec.tr && rec.u30 === 1,
+  // 保留率：窗口内全部业代（含转岗、含离职），分母/分子在弹窗里逐条标注
+  '业代试用期保留率': (rec, mo) => rec.sales && inSixWin(rec,mo),
 };
+// 实际计入统计的条件 = 候选 + 月末在职（保留率另行标注分子/分母）
+const PEOPLE_FN = {};
+Object.keys(PEOPLE_BASE).forEach(k => {
+  PEOPLE_FN[k] = (rec, mo) => PEOPLE_BASE[k](rec, mo) && inService(rec, mo);
+});
+
+const PEOPLE_FORMULA = {
+  '新聘业代人数': '当月新聘业务代表（职位含「业务代表」）且当月末在职；当月入职当月离职者不计入',
+  '新聘总人数': '当月新入职且员工组≠「转岗」、当月末在职',
+  '30岁以下人员': '当月新聘、年龄＜30 岁、不含转岗、当月末在职',
+  '女性业代人数': '当月新聘女性业务代表、当月末在职',
+  '本科业代人数': '当月新聘本科业务代表、当月末在职',
+  'YTD招聘总人数': '当年累计新聘总人数（不含转岗、不含当月入职当月离职）− 累计离职人员（不含转岗）',
+  'YTD业代招聘总数': '当年累计新聘业代 − 累计离职新聘业代（离职判定：离职时间 ≤ 当月月末）',
+  'YTD新聘女性人数': '当年累计新聘女性业代 − 累计离职女性业代',
+  'YTD本科业代人数': '当年累计新聘本科业代 − 累计离职本科业代',
+  'YTD30岁以下人数': '当年累计新聘 30 岁以下（不含转岗）− 累计离职 30 岁以下',
+  'YTD在职业代人数': '当年累计新聘业代中当月末仍在职的人数',
+};
+function sixWindowRange(mo) {
+  const [y, m] = mo.split('-').map(Number);
+  const end = new Date(y, m, 0), start = new Date(end.getTime() - 183 * 86400000);
+  const f = d => `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+  return [f(start), f(end)];
+}
 
 // YTD 占比类指标 -> 归因维度
 const RATIO_DIM = {
@@ -1049,31 +1248,72 @@ const RATIO_DIM = {
 
 let curPeopleList = [], curPeopleMeta = {};
 
-function openPeopleModal(colName, rg, mo) {
-  const fn = PEOPLE_FN[colName];
-  let list = [];
-  if (fn) list = D.records.filter(r => (rg === '合计' || r.rg === rg) && fn(r, mo));
-  curPeopleList = list;
-  curPeopleMeta = { colName, rg, mo };
+function openPeopleModal(colName, rg, mo, rgs) {
+  const base = PEOPLE_BASE[colName] || (() => false);
+  const isRet = colName === '业代试用期保留率';
+  const showAll = document.getElementById('peopleShowAll').checked;
+  const inRg = r => (rg === '合计' || r.rg === rg) && (!rgs || rgs.includes(r.rg));
+  const all = D.records.filter(r => inRg(r) && base(r, mo));
 
-  document.getElementById('peopleModalTitle').textContent = `${colName} · 人员明细`;
+  const items = all.map(r => {
+    const den = isRet ? !r.tr : (PEOPLE_FN[colName] ? PEOPLE_FN[colName](r, mo) : false);
+    const num = isRet ? (!r.tr && inService(r, mo)) : den;
+    let reason;
+    if (isRet) {
+      reason = r.tr ? '转岗人员，不计入分母与分子'
+        : !inService(r, mo) ? `已离职（${r.resign}），计入分母、不计入分子`
+        : '在职，计入分子与分母';
+    } else {
+      reason = !den
+        ? (r.resign ? `已离职（${r.resign}），按口径扣减，不计入` : '不满足指标条件，不计入')
+        : '在职，计入统计';
+    }
+    return { r, den, num, reason };
+  }).filter(it => showAll || it.den);
+  items.sort((a, b) => a.r.eff.localeCompare(b.r.eff));
+
+  curPeopleList = items;
+  curPeopleMeta = { colName, rg, mo, rgs };
+
+  const denN = items.filter(x => x.den).length, numN = items.filter(x => x.num).length;
+  const trN = items.filter(x => x.r.tr).length;
+  const leftN = items.filter(x => x.den && !x.num).length;
+  const [ws, we] = sixWindowRange(mo);
+
+  document.getElementById('peopleModalTitle').textContent = `${colName} · 人员明细（含未计入人员）`;
+  if (isRet) {
+    document.getElementById('peopleFormula').innerHTML =
+      `<b>计算公式</b>：业代试用期保留率 ＝（滚动6个月新聘业代 − 转岗人员 − 非转岗中已离职人员）÷（滚动6个月新聘业代 − 转岗人员）<br>
+       <b>代入数值</b>：分子 <b>${numN}</b> ÷ 分母 <b>${denN}</b> ＝ <b>${denN ? (numN / denN * 100).toFixed(1) + '%' : '–'}</b>　｜　窗口：<b>${ws} ~ ${we}</b>（当月月末往前 183 天）<br>
+       <b>人员构成</b>：窗口内业代 <b>${all.length}</b> 人 ＝ 转岗 <b>${trN}</b> 人（不计入）＋ 非转岗 <b>${denN}</b> 人（分母）；非转岗中已离职 <b>${leftN}</b> 人（计入分母、不计入分子）、仍在职 <b>${numN}</b> 人（分子）<br>
+       <b>说明</b>：下表列出窗口内全部人员（含已离职、转岗），并在末三列标注计入情况；「查看计算过程」弹窗展示的是 1-${mo.slice(5)} 月各月比率与年度平均。`;
+  } else {
+    document.getElementById('peopleFormula').innerHTML =
+      `<b>计算口径</b>：${PEOPLE_FORMULA[colName] || '按指标条件筛选并判断月末是否在职'}。<br>
+       <b>说明</b>：下表列出全部候选记录，含未计入者（橙色底纹），末三列标注是否计入及原因；离职扣减按「离职时间 ≤ 当月月末」判定。`;
+  }
   document.getElementById('peopleSummary').innerHTML =
-    `月份：<b>${mo}</b> ｜ 范围：<b>${rg}</b> ｜ 指标：<b>${colName}</b> ｜ 匹配人数：<b>${list.length}</b> 人`;
+    `月份：<b>${mo}</b> ｜ 范围：<b>${rgs ? `${([...pdpSel].sort().length === 3 ? '整体' : [...pdpSel].sort().join('+'))}（${rgs.length}个大区）` : rg}</b> ｜ 指标：<b>${colName}</b> ｜ 计入统计：<b>${denN}</b> 人${isRet ? `（分子 ${numN} 人）` : ''} ｜ 展示记录：<b>${items.length}</b> 条（其中未计入 ${items.length - denN} 条）`;
 
-  const cols = ['员工编码', '生效日期', '大区', '子部门2', '职位', '员工组', '性别', '学历', '30岁以下', '离职时间'];
+  const cols = ['员工编码', '生效日期', '大区', '子部门2', '职位', '员工组', '性别', '学历', '30岁以下', '离职时间', '计入分母', '计入分子', '说明'];
   let html = '<tr>' + cols.map(c => `<th>${c}</th>`).join('') + '</tr>';
-  if (!list.length) {
+  if (!items.length) {
     html += `<tr><td colspan="${cols.length}" style="padding:18px;color:var(--sub)">无匹配人员</td></tr>`;
   } else {
-    list.sort((a, b) => a.eff.localeCompare(b.eff));
-    list.forEach(r => {
-      html += `<tr><td>${r.id}</td><td>${r.eff}</td><td>${r.rg}</td><td>${r.sub2}</td><td>${r.pos}</td>` +
-              `<td>${r.grp}</td><td>${r.gender}</td><td>${r.edu}</td><td>${r.u30 ? '是' : '否'}</td><td>${r.resign || '-'}</td></tr>`;
+    items.forEach(({ r, den, num, reason }) => {
+      html += `<tr${den ? '' : ' class="excluded"'}><td>${r.id}</td><td>${r.eff}</td><td>${r.rg}</td><td>${r.sub2}</td><td>${r.pos}</td>` +
+        `<td>${r.grp}</td><td>${r.gender}</td><td>${r.edu}</td><td>${r.u30 ? '是' : '否'}</td><td>${r.resign || '-'}</td>` +
+        `<td>${den ? '是' : '否'}</td><td>${isRet ? (num ? '是' : '否') : '—'}</td><td style="text-align:left;white-space:normal">${reason}</td></tr>`;
     });
   }
   document.getElementById('peopleTable').innerHTML = html;
   document.getElementById('peopleModal').classList.add('open');
 }
+
+document.getElementById('peopleShowAll').addEventListener('change', () => {
+  const m = curPeopleMeta;
+  if (m.colName) openPeopleModal(m.colName, m.rg, m.mo, m.rgs);
+});
 
 document.getElementById('peopleModalClose').addEventListener('click', () => {
   document.getElementById('peopleModal').classList.remove('open');
@@ -1185,12 +1425,13 @@ document.getElementById('btnExportTable').addEventListener('click', () => {
 // 弹窗内导出：只导出当前查看的这一张表
 document.getElementById('btnExportPeople').addEventListener('click', () => {
   const { colName, rg, mo } = curPeopleMeta;
-  const head = ['员工编码', '职位生效日期', '大区', '子部门2', '职位', '员工组', '性别', '学历', '是否小于30岁', '离职时间'];
+  const head = ['员工编码', '职位生效日期', '大区', '子部门2', '职位', '员工组', '性别', '学历', '是否小于30岁', '离职时间', '计入分母', '计入分子', '计入情况说明'];
   const rows = [head];
-  curPeopleList.slice().sort((a, b) => a.eff.localeCompare(b.eff)).forEach(r => {
-    rows.push([r.id, r.eff, r.rg, r.sub2, r.pos, r.grp, r.gender, r.edu, r.u30 ? '是' : '否', r.resign || '']);
+  curPeopleList.forEach(({ r, den, num, reason }) => {
+    rows.push([r.id, r.eff, r.rg, r.sub2, r.pos, r.grp, r.gender, r.edu, r.u30 ? '是' : '否', r.resign || '',
+      den ? '是' : '否', num ? '是' : '否', reason]);
   });
-  downloadCSV(`${colName}_${rg}_${mo}_人员明细.csv`, rows);
+  downloadCSV(`${colName}_${rg}_${mo}_人员明细含未计入.csv`, rows);
 });
 
 document.getElementById('btnExportAttr').addEventListener('click', () => {
