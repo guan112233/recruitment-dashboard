@@ -163,7 +163,7 @@ tr.resigned td.resign-cell{color:#dc2626;font-weight:700}
 <header>
   <div>
     <h1>📊 关键指标数据看板</h1>
-    <div class="meta">数据源：底稿数据.xlsx · 生成时间：2026-11-25 16:31 · 每月更新数据后重新生成即可</div>
+    <div class="meta">数据源：底稿数据.xlsx · 生成时间：2026-11-25 16:38 · 每月更新数据后重新生成即可</div>
   </div>
 </header>
 
@@ -844,6 +844,8 @@ document.getElementById('calcTable').addEventListener('click', e => {
   const td = e.target.closest('td');
   if (!td || !td.dataset.col) return;
   const rgs = td.dataset.rgs ? td.dataset.rgs.split('|') : (curCalcMeta.rgs || pdpRegions());
+  // 先关闭计算过程弹窗，避免人员明细被压在其后
+  document.getElementById('calcModal').classList.remove('open');
   openPeopleModal(td.dataset.col, '合计', td.dataset.mo || curCalcMeta.mo, rgs);
 });
 document.getElementById('btnExportCalc').addEventListener('click', () => {
